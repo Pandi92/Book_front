@@ -8,6 +8,8 @@ const Register = () => {
         password: '',
     });
     const [errors, setErrors] = useState({});
+    
+    
 
     const handleChange = (e) => {
         setFormData({
@@ -17,9 +19,16 @@ const Register = () => {
     };
 
     const handleSubmit = async (e) => {
+    if (!formData.username) {
+        alert('Username is required');
+    }
+    if (!formData.password) {
+        alert('Password is required');
+    }
+
         e.preventDefault();
         console.log(formData);
-        const Register ={
+        const Register = {
             username: formData.username,
             password: formData.password
         }
@@ -29,11 +38,11 @@ const Register = () => {
             },
             method: 'POST',
             body: JSON.stringify(Register)
-         })
-         .then((response)=>{
-            console.log("Data Received" + response);
-          })
-        
+        })
+            .then((response) => {
+                console.log("Data Received" + response);
+            })
+
     };
 
     return (
