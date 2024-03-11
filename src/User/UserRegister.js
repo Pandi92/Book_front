@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import UserRegister from './UserRegister.css'
+import { Navigate } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -8,8 +10,8 @@ const Register = () => {
         password: '',
     });
     const [errors, setErrors] = useState({});
-    
-    
+
+
 
     const handleChange = (e) => {
         setFormData({
@@ -19,35 +21,59 @@ const Register = () => {
     };
 
     const handleSubmit = async (e) => {
-    if (!formData.username) {
-        alert('Username is required');
-    }
-    if (!formData.password) {
-        alert('Password is required');
-    }
+        if (!formData.username) {
+            alert('Username is required');
+        }
+        if (!formData.password) {
+            alert('Password is required');
+        }
 
         e.preventDefault();
         console.log(formData);
-        const Register = {
+        const Register ={
             username: formData.username,
             password: formData.password
         }
-        fetch(`http://localhost:8080/user/register`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: 'POST',
-            body: JSON.stringify(Register)
-        })
-            .then((response) => {
-                console.log("Data Received" + response);
-            })
+        fetch(`http://localhost:8080/check-username=${formData.username}`)    
+         .then((response)=>{
+            if(!response.ok) {
+              throw new Error("Failed to fetch data");
+            }
+           return response.json();
+          })
+          .then((data) => {
+            if(data == formData.username) {
+                return alert("username alredy exit");
+            }else{
+                console.log("Data",data)
+                setFormData(data  )
+            }
+          })
+          .catch((error) =>{
+            console.error("Error During fetch", error);
+          })
+       
+
+            // Register user if username is available
+            try{
+            const response = await axios.post('http://localhost:8080/user/register', formData);
+            console.log(response.data);
+            alert(`successfully registerd`);
+            history.push('/login');
+            // Handle successful registration
+             } catch (error) {
+            if (error.response && error.response.data) {
+                setErrors(error.response.data);
+            }
+        }
+
+
 
     };
 
     return (
-
-        <div className='container  text-center reg'>
+        <>
+        <div className='text-center reg'>
             <h2 className='text-primary'>SIGN-UP</h2>
             <form onSubmit={handleSubmit} className=''>
                 <div className='mb-4'>
@@ -59,11 +85,12 @@ const Register = () => {
                     {errors.password && <div className="error">{errors.password}</div>}
                 </div>
                 <div className='mb-4'>
-                    <button className='btn btn-outline-dark' type="submit"><i>Signup</i></button>
+                    <button className='btn btn-outline-light' type="submit"><i>Signup</i></button>
                 </div>
 
             </form>
         </div>
+        </>
     );
 };
 
