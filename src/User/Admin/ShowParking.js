@@ -22,17 +22,18 @@ const ShowParking = () => {
     return (
         <div>
             <Navbar />
-            <h2>Parking Slots</h2>
+            <h2 className='text-center'>PARKING SLOTS</h2>
 
             {parkinslot.map(parkinslot => (
                 <div key={parkinslot.id}>
                     <table className='table'>
+
                         <tr>
-                            <th> City: </th>
-                            <th> Area:</th>
-                            <th>Location:</th>
-                            <th>Floor:</th>
-                            <th>SlotNo:</th>
+                            <th> City</th>
+                            <th> Area</th>
+                            <th>Location</th>
+                            <th>Floor</th>
+                            <th>SlotNo</th>
                         </tr>
                         <tr>
                             <td> {parkinslot.city}</td>

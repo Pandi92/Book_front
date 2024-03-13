@@ -17,6 +17,9 @@ const Navbar = () => {
                             <li class="nav-item">
                                 <a class="nav-link" href="http://localhost:3000/showlot">ShowParking</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://localhost:3000">Signout</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
@@ -28,11 +31,9 @@ const Navbar = () => {
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                            </li>
+
                         </ul>
-                       
+
                     </div>
                 </div>
             </nav>
