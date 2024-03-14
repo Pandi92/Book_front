@@ -3,6 +3,7 @@ import { useState } from 'react'
 import css from './Home.css'
 import Navbar  from './Navbar'
 import axios from 'axios'
+import { Navigate,useNavigate } from 'react-router'
 
 const CreateParking = () => {
 
@@ -11,8 +12,9 @@ const CreateParking = () => {
         area:'',
         location:'',
         floor:'',
-        slotno:''
+        slots:''
     });
+    const Navigate = useNavigate();
 
     function handleChange(event){
         const { name, value } = event.target
@@ -27,6 +29,7 @@ const CreateParking = () => {
         .then(response=>{
             console.log("Parking Lot Created",response.data);
             alert("Successfully Created");
+            Navigate("/showlot");
           })
         .catch(error=>{
             console.error("Error Creating Parking lot",error);
@@ -42,22 +45,22 @@ const CreateParking = () => {
             <h2 className='text-primary'>CREATE PARKING LOT</h2>
             <form onSubmit={handleSubmit} className=''>
                 <div className='mb-4'>
-                    <input type="text" className='rounded p-2 fst-italic' name="city" value={place.city} onChange={handleChange} placeholder='Enter Your City' />
+                    <input type="text" className='rounded p-2 fst-italic' name="city" value={place.city} onChange={handleChange} placeholder='Add City' />
                     
                 </div>
                 <div className='mb-4'>
-                    <input type="text" className='rounded p-2 fst-italic' name="area" value={place.area} onChange={handleChange} placeholder='Enter Your Area' />
+                    <input type="text" className='rounded p-2 fst-italic' name="area" value={place.area} onChange={handleChange} placeholder='Add Address ' />
                     
                 </div>
                 <div className='mb-4'>
-                    <input type="text" className='rounded p-2 fst-italic' name="location" value={place.location} onChange={handleChange} placeholder='Enter Your Location' />
+                    <input type="text" className='rounded p-2 fst-italic' name="location" value={place.location} onChange={handleChange} placeholder='Add Location' />
                     
                 </div>
-                    <input type="text" className='rounded p-2 fst-italic' name="floor" value={place.floor} onChange={handleChange} placeholder='Enter Your Floor' />
+                    <input type="text" className='rounded p-2 fst-italic' name="floor" value={place.floor} onChange={handleChange} placeholder='Add Floor' />
                 <div className='mb-4'>
                 </div>
                     
-                    <input type="text" className='rounded p-2 fst-italic' name="slotno" value={place.slotno} onChange={handleChange} placeholder='Enter Your SlotNo' />
+                    <input type="text" className='rounded p-2 fst-italic' name="slots" value={place.slots} onChange={handleChange} placeholder='Add Slots' />
                 <div className='mb-4'>
                     
                 </div>
