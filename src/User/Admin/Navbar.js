@@ -18,6 +18,10 @@ const Navbar = () => {
                                 <a className="nav-link" href="http://localhost:3000/showlot">ShowParking</a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" href="http://localhost:3000/userbooking">UserBooking</a>
+                            </li>
+                           
+                            <li className="nav-item">
                                 <a className="nav-link" href="http://localhost:3000">Signout</a>
                             </li>
                             <li className="nav-item dropdown">

@@ -9,7 +9,7 @@ const CreateParking = () => {
 
     const[place,setplace]=useState({
         city:'',
-        area:'',
+        place:'',
         location:'',
         floor:'',
         slots:''
@@ -49,7 +49,7 @@ const CreateParking = () => {
                     
                 </div>
                 <div className='mb-4'>
-                    <input type="text" className='rounded p-2 fst-italic' name="area" value={place.area} onChange={handleChange} placeholder='Add Address ' />
+                    <input type="text" className='rounded p-2 fst-italic' name="place" value={place.place} onChange={handleChange} placeholder='Add Place ' />
                     
                 </div>
                 <div className='mb-4'>
